@@ -12,13 +12,18 @@ export class AuthController {
     return this.authService.getAll();
   }
 
-  @Get('/:id')
-  getOne(@Param('id') userId: number): User {
-    return this.authService.getOne(userId);
+  @Get('/:username')
+  getOne(@Param('username') username: string): User {
+    return this.authService.getOne(username);
   }
 
-  @Post()
-  create(@Body() userData: AuthCredentialsDto) {
-    return this.authService.create(userData);
+  @Post('/sign-up')
+  signUp(@Body() userData: AuthCredentialsDto) {
+    return this.authService.signUp(userData);
+  }
+
+  @Post('/sign-in')
+  signIn(@Body() userData: AuthCredentialsDto) {
+    return this.authService.signIn(userData);
   }
 }

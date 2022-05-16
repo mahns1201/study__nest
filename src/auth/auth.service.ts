@@ -3,11 +3,14 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
 import { AuthCredentialsDto } from './dto/create-auth.dto';
 import { User } from './entities/user.entity';
 
 @Injectable()
 export class AuthService {
+  constructor(private readonly jwtService: JwtService) {}
+
   private users: User[] = [];
 
   getAll(): User[] {
@@ -37,7 +40,11 @@ export class AuthService {
     if (userData.password !== user.password) {
       throw new ConflictException('Invalid Password');
     }
+    // 로그인 성공 시, jwt 토큰 생성 (payload, secret)
+    // payload에는 민감정보는 넣으면 안 된다.
+    const payload = { username: user.username };
+    const accessToken = await this.jwtService.sign(payload);
 
-    return 'successfully login';
+    return { accessToken };
   }
 }

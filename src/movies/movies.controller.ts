@@ -6,15 +6,22 @@ import {
   Param,
   Patch,
   Post,
-  Query,
+  // Query,
 } from '@nestjs/common';
 import { CreateMovieDto } from './dto/create-movie.dto';
 import { UpdateMovieDto } from './dto/update-movie.dto';
 import { MoviesService } from './movies.service';
 import { Movie } from './entities/movie.entity';
+// import { MovieStatusValidationPipe } from './pipes/movie-status-validation.pipe';
 
 @Controller('movies') // 'movies' is basic router
 export class MoviesController {
+  // moviesService: MoviesService; // 선언
+  // constructor(moviesService: MoviesService) {
+  //   this.moviesService = moviesService;
+  // } // constructor로 생성
+
+  // 접근 제한자를 생성자 파라미터에 선언 시, 해당 파라미터는 암묵적으로 클래스 프로퍼티로 선언됨.
   constructor(private readonly moviesService: MoviesService) {}
 
   @Get()
@@ -53,4 +60,12 @@ export class MoviesController {
     //   ...updateData,
     // };
   }
+
+  // @Patch('/:id/status')
+  // updateMovieStatus(
+  //   @Param('id') movieId: number,
+  //   @Body() status: MovieStatusValidationPipe,
+  // ) {
+  //   return this.moviesService.updateMovieStatus(movieId, status);
+  // }
 }

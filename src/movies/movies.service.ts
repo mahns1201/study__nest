@@ -4,7 +4,7 @@ import { CreateMovieDto } from './dto/create-movie.dto';
 import { UpdateMovieDto } from './dto/update-movie.dto';
 // import { MovieStatusValidationPipe } from './pipes/movie-status-validation.pipe';
 
-// 보통 DB에 관련된 로직을 처리한다.
+// 보통 DB에 관련된 로직을 처리한다. -> DB 로직은 repository에서 관리한다 (repository pattern)
 
 @Injectable()
 export class MoviesService {

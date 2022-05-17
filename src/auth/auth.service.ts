@@ -34,12 +34,13 @@ export class AuthService {
     });
   }
 
-  async signIn(userData: AuthCredentialsDto) {
+  async signIn(userData: AuthCredentialsDto): Promise<{ accessToken: string }> {
     const user = await this.getOne(userData.username);
 
     if (userData.password !== user.password) {
       throw new ConflictException('Invalid Password');
     }
+
     // 로그인 성공 시, jwt 토큰 생성 (payload, secret)
     // payload에는 민감정보는 넣으면 안 된다.
     const payload = { username: user.username };

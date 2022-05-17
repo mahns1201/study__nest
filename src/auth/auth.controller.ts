@@ -1,4 +1,15 @@
-import { Controller, Post, Body, Get, Param } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  Get,
+  Param,
+  Req,
+  UseGuards,
+  // UseGuards,
+} from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
+// import { AuthGuard } from '@nestjs/passport';
 import { AuthService } from './auth.service';
 import { AuthCredentialsDto } from './dto/create-auth.dto';
 import { User } from './entities/user.entity';
@@ -23,7 +34,16 @@ export class AuthController {
   }
 
   @Post('/sign-in')
-  signIn(@Body() userData: AuthCredentialsDto) {
+  signIn(
+    @Body() userData: AuthCredentialsDto,
+  ): Promise<{ accessToken: string }> {
     return this.authService.signIn(userData);
+  }
+
+  // UseGuards: 인증 미들웨어, AuthGuard: @nestjs/passport에서 가저옴.
+  @Post('/test')
+  @UseGuards(AuthGuard())
+  test(@Req() req) {
+    console.log('req: ', req);
   }
 }

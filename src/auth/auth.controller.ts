@@ -1,16 +1,7 @@
-import {
-  Controller,
-  Post,
-  Body,
-  Get,
-  Param,
-  Req,
-  UseGuards,
-  // UseGuards,
-} from '@nestjs/common';
+import { Controller, Post, Body, Get, Param, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-// import { AuthGuard } from '@nestjs/passport';
 import { AuthService } from './auth.service';
+import { GetUser } from './decorator/get-user.decorator';
 import { AuthCredentialsDto } from './dto/create-auth.dto';
 import { User } from './entities/user.entity';
 
@@ -41,9 +32,9 @@ export class AuthController {
   }
 
   // UseGuards: 인증 미들웨어, AuthGuard: @nestjs/passport에서 가저옴.
-  @Post('/test')
+  @Post('/verify')
   @UseGuards(AuthGuard())
-  test(@Req() req) {
-    console.log('req: ', req);
+  verifyToken(@GetUser() user: User) {
+    console.log('user: ', user);
   }
 }

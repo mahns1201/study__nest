@@ -1,10 +1,13 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { Logger, ValidationPipe } from '@nestjs/common';
+import * as config from 'config';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  const PORT = 3000;
+  const serverConfig = config.get('server');
+  const PORT = serverConfig.port;
+
   // pipes -> parameter-level, handler-level, global-level
   // built-in pipes -> ValidationPipe, ParseIntPipe, ParseBoolPipe, ParseArrayPipe, ParseUUIDPipe, DefaultValuePipe
   app.useGlobalPipes(

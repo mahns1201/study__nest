@@ -6,15 +6,18 @@ import {
   Param,
   Patch,
   Post,
+  UseGuards,
   // Query,
 } from '@nestjs/common';
 import { CreateMovieDto } from './dto/create-movie.dto';
 import { UpdateMovieDto } from './dto/update-movie.dto';
 import { MoviesService } from './movies.service';
 import { Movie } from './entities/movie.entity';
+import { AuthGuard } from '@nestjs/passport';
 // import { MovieStatusValidationPipe } from './pipes/movie-status-validation.pipe';
 
 @Controller('movies') // 'movies' is basic router
+@UseGuards(AuthGuard())
 export class MoviesController {
   // moviesService: MoviesService; // 선언
   // constructor(moviesService: MoviesService) {

@@ -11,3 +11,22 @@ export enum MovieStatus {
   PUBLIC = 'public',
   PRIVATE = 'private',
 }
+
+// make class to table using typeorm
+// import { BaseEntity,  PrimaryGeneratedColumn } from 'typeorm';
+
+// @entity()
+// export class Movie extends BaseEntity {
+//   @PrimaryGeneratedColumn()
+//   id: number;
+
+//   @Column()
+//   title: string;
+
+//   @Column()
+//   year: number;
+
+//   @Column()
+//   genres: string[];
+//   // status: MovieStatus;
+// }

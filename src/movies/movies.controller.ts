@@ -3,6 +3,7 @@ import {
   Controller,
   Delete,
   Get,
+  Logger,
   Param,
   Patch,
   Post,
@@ -14,6 +15,8 @@ import { UpdateMovieDto } from './dto/update-movie.dto';
 import { MoviesService } from './movies.service';
 import { Movie } from './entities/movie.entity';
 import { AuthGuard } from '@nestjs/passport';
+import { GetUser } from 'src/auth/decorator/get-user.decorator';
+import { User } from 'src/auth/entities/user.entity';
 // import { MovieStatusValidationPipe } from './pipes/movie-status-validation.pipe';
 
 @Controller('movies') // 'movies' is basic router
@@ -26,9 +29,11 @@ export class MoviesController {
 
   // 접근 제한자를 생성자 파라미터에 선언 시, 해당 파라미터는 암묵적으로 클래스 프로퍼티로 선언됨.
   constructor(private readonly moviesService: MoviesService) {}
+  private logger = new Logger('MoviesController');
 
   @Get()
-  getAll(): Movie[] {
+  getAll(@GetUser() user: User): Movie[] {
+    this.logger.verbose(`User ${user.username} trying to get all movies`);
     return this.moviesService.getAll();
   }
 

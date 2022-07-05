@@ -1,5 +1,5 @@
 {
-  "name": "study__nest",
+  "name": "graph-ql",
   "version": "0.0.1",
   "description": "",
   "author": "",
@@ -21,18 +21,9 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
-    "@nestjs/common": "^8.4.5",
-    "@nestjs/core": "^8.4.5",
-    "@nestjs/jwt": "^8.0.0",
-    "@nestjs/mapped-types": "^1.0.1",
-    "@nestjs/passport": "^8.2.1",
+    "@nestjs/common": "^8.0.0",
+    "@nestjs/core": "^8.0.0",
     "@nestjs/platform-express": "^8.0.0",
-    "@types/passport-jwt": "^3.0.6",
-    "class-transformer": "^0.5.1",
-    "class-validator": "^0.13.2",
-    "config": "^3.3.7",
-    "passport": "^0.5.2",
-    "passport-jwt": "^4.0.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0"
